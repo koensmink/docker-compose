@@ -1,0 +1,43 @@
+version: "3.4"
+services:
+    qualys-client-service:
+        image: qualys/qualys-client-for-jira-integration:1.3.1.1
+        networks:
+            - qualys-jira-connector
+        volumes:
+            - ./qualys-jira-volume:/opt/qualys/common/jiraconnector/
+        environment:
+            - SPRING_REDIS_HOST=${REDIS_HOST}
+            - SPRING_REDIS_PORT=${REDIS_PORT}
+            - SPRING_REDIS_USER=${REDIS_USER}
+            - SPRING_REDIS_PASSWORD=${REDIS_PASSWORD}
+
+    redis-client-service:
+        image: qualys/redis-client-for-jira-integration:1.2.0
+        networks:
+            - qualys-jira-connector
+        ports:
+          - ${TCPPORT}:6379
+        volumes:
+          - ./qualys-jira-volume:/opt/qualys/common/jiraconnector/
+
+    jira-client-service:
+        image: qualys/jira-client-for-jira-integration:1.3.1.1
+        networks:
+            - qualys-jira-connector
+        volumes:
+            - ./qualys-jira-volume:/opt/qualys/common/jiraconnector/
+        environment:
+            - SPRING_REDIS_HOST=${REDIS_HOST}
+            - SPRING_REDIS_PORT=${REDIS_PORT}
+            - SPRING_REDIS_USER=${REDIS_USER}
+            - SPRING_REDIS_PASSWORD=${REDIS_PASSWORD}
+        depends_on:
+            - qualys-client-service
+    dns:
+      - ${DNS}
+networks:
+    qualys-jira-connector:
+
+volumes:
+  qualys-jira-volume:
