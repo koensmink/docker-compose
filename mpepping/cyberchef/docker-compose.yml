@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  cyber-chef:
+    image: mpepping/cyberchef:latest
+    ports:
+      - ${UDPPORT}:8000/udp
+    dns:
+      - ${DNS}
