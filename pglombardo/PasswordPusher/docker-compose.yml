@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  proxy:
+    image: nginx
+    volumes:
+     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - ${NGINXPORT}:80
+    # This allows both containers to reference each other (via Docker
+    # DNS).  The names 'pwpush' and 'proxy' will resolve to their
+    # respective Docker IP addresses.
+    links:
+      - pwpush:proxy
+  pwpush:
+    image: docker.io/pglombardo/pwpush:latest
+    ports:
+      - ${PWPUSHPORT}:5100
+    env_file:
+      - .env
