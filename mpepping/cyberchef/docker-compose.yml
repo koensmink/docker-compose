@@ -7,3 +7,5 @@ services:
       - ${PORT}:8000
     dns:
       - ${DNS}
+    env_file:
+      - .env
