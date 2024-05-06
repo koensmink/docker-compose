@@ -28,6 +28,13 @@ services:
     restart: always
     networks:
       - ollama-docker
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   ollama-webui:
     image: ghcr.io/open-webui/open-webui:main
