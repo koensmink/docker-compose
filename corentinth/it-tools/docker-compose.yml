@@ -6,3 +6,5 @@ services:
         ports:
             - ${PORT}:80
         image: 'corentinth/it-tools:latest'
+        dns:
+            - ${DNS}
