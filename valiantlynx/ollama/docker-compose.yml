@@ -35,7 +35,9 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-
+    labels:
+      - com.centurylinklabs.watchtower.enable = "false"
+      
   ollama-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: ollama-webui
@@ -52,7 +54,8 @@ services:
     restart: unless-stopped
     networks:
       - ollama-docker
-
+    labels:
+      - com.centurylinklabs.watchtower.enable = "false"
 networks:
   ollama-docker:
     external: false
