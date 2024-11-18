@@ -3,7 +3,7 @@ services:
     it-tools:
         container_name: it-tools
         restart: unless-stopped
-        read_only: true
+        read_only: ${READONLY}
         ports:
             - ${PORT}:80
         image: 'corentinth/it-tools:latest'
