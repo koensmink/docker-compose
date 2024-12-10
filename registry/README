@@ -1,3 +1,3 @@
-Generate your password in the auth directory by the following command: 
+Generate your password in the auth directory by the following command or use your own htpasswd hash:
 
 docker run --rm --entrypoint htpasswd httpd:2 -Bbn USERNAME PASSWORD > htpasswd 
