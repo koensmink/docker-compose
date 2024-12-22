@@ -8,6 +8,4 @@ services:
       - ${PORT}:9090
     volumes:
       - ${DATAPATH}:/etc/linkding/data
-    env_file:
-      - .env
     restart: unless-stopped
