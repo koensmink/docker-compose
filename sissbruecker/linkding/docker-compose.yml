@@ -5,7 +5,7 @@ services:
     container_name: linkding
     image: sissbruecker/linkding:latest
     ports:
-      - 9090:9090
+      - ${PORT}:9090
     volumes:
       - ${DATAPATH}:/etc/linkding/data
     env_file:
