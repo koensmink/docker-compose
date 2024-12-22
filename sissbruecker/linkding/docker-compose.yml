@@ -7,7 +7,7 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./data:/etc/linkding/data
+      - ${DATAPATH}:/etc/linkding/data
     env_file:
       - .env
     restart: unless-stopped
