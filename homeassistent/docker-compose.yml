@@ -1,0 +1,29 @@
+version: "3.6"
+
+services:
+
+  hass:
+    container_name: 'homeassistant'
+    image: 'homeassistant/home-assistant:latest'
+    restart: 'unless-stopped'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${HASHPATH}:/config
+    environment:
+      - TZ=Europe/Amsterdam
+    privileged: true
+    network_mode: host # needed for HACS add-ons (dynamic porting!)
+
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - ${NODEREDPATH}:/data
+
+networks:
+  node-red-net:
