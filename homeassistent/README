@@ -1,0 +1,7 @@
+# HACS in Homeassistant
+docker exec -it homeassistant bash
+
+wget -O – https://get.hacs.xyz | bash –
+
+# nodered
+chown -R 1000:1000 ${NODEREDPATH}
