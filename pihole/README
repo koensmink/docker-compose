@@ -1,0 +1,4 @@
+Once having "failed to bind port 0.0.0.0:53/tcp: Error starting userland proxy: listen tcp4 0.0.0.0:53: bind: address already in use"
+
+(sudo) systemctl stop systemd-resolved.service
+(sudo) systemctl disable systemd-resolved.service  
