@@ -11,7 +11,7 @@ services:
       - ${DATA_DIR}:/config
       - ${DATA_DIR}:/data
     ports:
-      - ${PORT}:8000
+      - ${PORT}:80
     dns:
       - ${DNS}
     env_file:
