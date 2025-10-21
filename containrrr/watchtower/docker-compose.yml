@@ -1,0 +1,15 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    environment:
+      - TZ=${TZ}
+      - WATCHTOWER_LIFECYCLE_HOOKS=${HOOKS}
+      - WATCHTOWER_NOTIFICATIONS=${NOTIFICATIONTYPE}
+      - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWERURL}
+      - WATCHTOWER_DEBUG=${DEBUG}
+      - WATCHTOWER_CLEANUP=${CLEANUP}
+      - WATCHTOWER_SCHEDULE=${SCHEDULE}
