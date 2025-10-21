@@ -1,0 +1,36 @@
+services:
+  npmplus:
+    container_name: npmplus
+    image: docker.io/zoeyvid/npmplus:latest
+    restart: always
+    network_mode: host
+#    ipc: service:openappsec-agent
+    volumes:
+      - ${DATA}:/data
+    environment:
+      - "TZ=${TIMEZONE}"
+      - "ACME_EMAIL=${ACMMAIL}"
+      - "DISABLE_IPV6=true"
+      - "GOA=true"
+      - "INITIAL_ADMIN_EMAIL=${ADMINEMAIL}"
+      - "INITIAL_ADMIN_PASSWORD=${ADMINPASSWORD}"
+      - "LOGROTATE=true"
+      - "LOGROTATIONS=7"
+      - "GOA_PORT=1030"
+      - "NPM_PORT=1031"
+      - "X_FRAME_OPTIONS=sameorigin"
+#      - "NGINX_LOAD_OPENAPPSEC_ATTACHMENT_MODULE=true"
+
+  geoipupdate:
+    container_name: npmplus-geoipupdate
+    image: docker.io/maxmindinc/geoipupdate:latest
+    restart: always
+    network_mode: bridge
+    environment:
+      - "TZ=${TIMEZONE}"
+      - "GEOIPUPDATE_EDITION_IDS=GeoLite2-ASN"
+      - "GEOIPUPDATE_ACCOUNT_ID="
+      - "GEOIPUPDATE_LICENSE_KEY="
+      - "GEOIPUPDATE_FREQUENCY=24"
+    volumes:
+      - ${DATA}:/data
