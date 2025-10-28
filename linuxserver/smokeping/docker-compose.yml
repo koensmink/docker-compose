@@ -1,4 +1,3 @@
-version: "2.1"
 services:
   smokeping:
     image: lscr.io/linuxserver/smokeping
@@ -12,8 +11,6 @@ services:
       - ${DATA_DIR}:/data
     ports:
       - ${PORT}:80
-    dns:
-      - ${DNS}
     env_file:
       - .env    
     restart: unless-stopped
